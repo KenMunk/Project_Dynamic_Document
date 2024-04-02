@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace DynamicDocumentLibrary
 {
@@ -8,48 +9,50 @@ namespace DynamicDocumentLibrary
     {
         public class DocumentItem
         {
-            private string key { get; set; }
-            public string name { get; set; }
-            public string value { get; set; }
+            /// <summary>
+            /// Defines the type of item that this document item is.
+            /// <br></br>
+            /// <br></br>
+            /// DocumentItem types are labels used to better organize
+            /// a dynamic document so that specific element types can
+            /// be selected to be included or ommitted from an exported
+            /// dynamic document
+            /// <br></br>
+            /// <br></br>
+            /// Example:
+            /// <br></br>
+            /// Type = "Phone Number"
+            /// <br></br>
+            /// Value = "+1(222)333-4444"
+            /// </summary>
+            public string Type { get; set; }
 
-            public DocumentItem()
+            /// <summary>
+            /// Defines the value of a document item.
+            /// <br></br><br></br>
+            /// DocumentItem values can be any payload string value
+            /// there is no binding requirement to how the value is
+            /// structured so long as it is a string.
+            /// <br></br><br></br>
+            /// Example:
+            /// <br></br>
+            /// Type = "Phone Number"
+            /// <br></br>
+            /// Value = "+1(222)333-4444"
+            /// </summary>
+            public string Value { get; set; }
+
+            public DocumentItem() { }
+
+            public DocumentItem(string Type, string Value)
             {
-
+                this.Type = Type;
+                this.Value = Value;
             }
 
-            public DocumentItem(string key, string name, string value)
-            {
-                this.key = key;
-                this.name = name;
-                this.value = value;
-            }
+            public string toString() => JsonSerializer.Serialize(this);
 
-            public string toString() => string.Format("{0},{1},{2}",key, name, value);
 
-            public bool setkey(string key)
-            {
-                if(this.key == null || this.key == string.Empty)
-                {
-                    this.key = key;
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            public string getkey()
-            {
-                if(this.key == null)
-                {
-                    return string.Empty;
-                }
-                else
-                {
-                    return this.key;
-                }
-            }
 
         }
 
