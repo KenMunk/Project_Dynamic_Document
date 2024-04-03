@@ -18,18 +18,24 @@ namespace DynamicDocumentLibrary
                 Contents = new List<DocumentItem>();
             }
 
-            public SectionItem(string source)
+            public override bool Deserialize(string source)
             {
-                //Need to wrap deserialization into a try catch block
-                //If there is an error in reading we should do something
-                SectionItem temporary =(
+                try
+                {
+                    SectionItem temporary = (
                     JsonSerializer.Deserialize<SectionItem>(source)
-                );
+                    );
 
-                this.Value = temporary.Value;
-                this.Type = temporary.Type;
-                this.Contents = temporary.Contents;
-                this.Key = temporary.Key;
+                    this.Value = temporary.Value;
+                    this.Type = temporary.Type;
+                    this.Contents = temporary.Contents;
+                    this.Key = temporary.Key;
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
 
             public override string ToString()

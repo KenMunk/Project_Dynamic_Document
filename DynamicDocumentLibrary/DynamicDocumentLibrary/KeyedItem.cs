@@ -70,8 +70,8 @@ namespace DynamicDocumentLibrary
             {
             }
 
-            public KeyedItem(string source){
-
+            public KeyedItem(string key){
+                this.Key = key;
             }
 
             /// <summary>
@@ -88,6 +88,30 @@ namespace DynamicDocumentLibrary
             public void OverwriteKeyWith(string newKey)
             {
                 _key = newKey;
+            }
+
+            public override bool Deserialize(string source)
+            {
+                try
+                {
+                    KeyedItem temporary = (
+                    JsonSerializer.Deserialize<KeyedItem>(source)
+                    );
+
+                    this.Value = temporary.Value;
+                    this.Type = temporary.Type;
+                    this.Key = temporary.Key;
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            public override string ToString()
+            {
+                return JsonSerializer.Serialize(this);
             }
         }
     }

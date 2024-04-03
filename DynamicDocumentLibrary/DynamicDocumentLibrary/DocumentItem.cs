@@ -7,7 +7,7 @@ namespace DynamicDocumentLibrary
 {
     namespace Structure
     {
-        public class DocumentItem
+        public class DocumentItem : DocumentItemTemplate
         {
             /// <summary>
             /// Defines the type of item that this document item is.
@@ -53,6 +53,24 @@ namespace DynamicDocumentLibrary
             {
                 this.Type = Type;
                 this.Value = Value;
+            }
+
+            public override bool Deserialize(string source)
+            {
+                try
+                {
+                    DocumentItem temporaryItem = (
+                        JsonSerializer.Deserialize<DocumentItem>(source)
+                    );
+
+                    this.Value = temporaryItem.Value;
+                    this.Type = temporaryItem.Type;
+                }
+                catch
+                {
+                    return false;
+                }
+                return true;
             }
 
             public override string ToString() => JsonSerializer.Serialize(this);

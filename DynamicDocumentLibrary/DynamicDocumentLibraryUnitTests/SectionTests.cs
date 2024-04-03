@@ -90,9 +90,18 @@ namespace DynamicDocumentLibraryUnitTests
                 "\"Value\":null" +
             "}";
 
-            SectionItem sectionItem = new SectionItem(expected);
+            SectionItem sectionItem = new SectionItem();
 
-            Assert.AreEqual(expected, sectionItem.ToString());
+            if(sectionItem.Deserialize(expected))
+            {
+                Assert.AreEqual(expected, sectionItem.ToString());
+            }
+            else
+            {
+                Assert.Fail("Deserialization failed due to corrupt JSON input");
+            }
+
         }
+
     }
 }
