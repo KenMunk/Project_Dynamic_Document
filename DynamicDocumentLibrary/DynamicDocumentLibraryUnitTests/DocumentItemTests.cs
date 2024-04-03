@@ -13,7 +13,7 @@ namespace DynamicDocumentLibraryUnitTests
         {
             DocumentItem testDocumentItem = new DocumentItem();
 
-            string result = testDocumentItem.toString();
+            string result = testDocumentItem.ToString();
             string expected = "{\"Type\":null,\"Value\":null}";
             Console.WriteLine("Blank test Document Item is {0}", result);
 
@@ -28,7 +28,7 @@ namespace DynamicDocumentLibraryUnitTests
                 "SuccessfulValue"
             );
 
-            string result = testItem.toString();
+            string result = testItem.ToString();
             Console.WriteLine("Fully initialized test Item is: {0}", result);
 
             string expected = "{\"Type\":\"TestType\",\"Value\":\"SuccessfulValue\"}";

@@ -44,13 +44,18 @@ namespace DynamicDocumentLibrary
 
             public DocumentItem() { }
 
+            public DocumentItem(string source)
+            {
+
+            }
+
             public DocumentItem(string Type, string Value)
             {
                 this.Type = Type;
                 this.Value = Value;
             }
 
-            public string toString() => ""; // JsonSerializer.Serialize(this);
+            public override string ToString() => JsonSerializer.Serialize(this);
 
 
 

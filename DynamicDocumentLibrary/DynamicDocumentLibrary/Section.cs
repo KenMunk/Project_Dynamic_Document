@@ -1,71 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace DynamicDocumentLibrary
 {
     namespace Structure
     {
-        public class SectionItem
+        public class SectionItem : KeyedItem
         {
-            /// <summary>
-            /// 
-            /// Holds he Key reference of a document section.
-            /// <br></br><br></br>
-            /// The Key can only be modified when null or empty to
-            /// maintain data integrity.  The reason for this
-            /// is that if a reference is already set for a
-            /// document item, any changes to it will cause
-            /// a cascade of reference errors.  This will also mean
-            /// that there needs to be external validation of
-            /// the Keys to ensure that there are no duplicate Keys
-            /// being used for different items.
-            /// 
-            /// <br></br>
-            /// <br></br>
-            /// 
-            /// <b>
-            /// There are two operations available for Key, get and set
-            /// </b>
-            /// 
-            /// <br>Get: returns the current value of Key</br>
-            /// 
-            /// <br>
-            /// Set: sets the value of the Key if the Key is null or empty
-            /// if the Key value is not empty the value will not be changed
-            /// </br>
-            /// 
-            /// <br>
-            /// <b>
-            /// If there are duplicate values, the 
-            /// implementation is wrong
-            /// </b>
-            /// </br>
-            /// 
-            /// </summary>
-            public string Key
-            {
-                get { return Key; }
-                set
-                {
-                    if (
-                        this.Key == null
-                        ||
-                        this.Key == string.Empty
-                    )
-                    {
-                        this.Key = Key;
-                    }
-                }
-            }
-
-            public List<DocumentItem> contents { get; set; }
+            
+            [JsonInclude]
+            public List<DocumentItem> Contents;
 
             public SectionItem()
             {
+                Contents = new List<DocumentItem>();
             }
 
-            public string toString()
+            public SectionItem(string source)
+            {
+                //Need to wrap deserialization into a try catch block
+                //If there is an error in reading we should do something
+                SectionItem temporary =(
+                    JsonSerializer.Deserialize<SectionItem>(source)
+                );
+
+                this.Value = temporary.Value;
+                this.Type = temporary.Type;
+                this.Contents = temporary.Contents;
+                this.Key = temporary.Key;
+            }
+
+            public override string ToString()
             {
                 return JsonSerializer.Serialize(this);
             }
