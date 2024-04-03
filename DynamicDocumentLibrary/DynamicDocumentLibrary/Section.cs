@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace DynamicDocumentLibrary
 {
     namespace Structure
     {
-        public class Section:DocumentItem
+        public class SectionItem
         {
             /// <summary>
             /// 
@@ -60,9 +61,13 @@ namespace DynamicDocumentLibrary
 
             public List<DocumentItem> contents { get; set; }
 
-            public Section()
+            public SectionItem()
             {
-                this.contents = new List<DocumentItem>();
+            }
+
+            public string toString()
+            {
+                return JsonSerializer.Serialize(this);
             }
         }
     }

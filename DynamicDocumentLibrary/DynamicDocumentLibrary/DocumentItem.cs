@@ -50,7 +50,7 @@ namespace DynamicDocumentLibrary
                 this.Value = Value;
             }
 
-            public string toString() => JsonSerializer.Serialize(this);
+            public string toString() => ""; // JsonSerializer.Serialize(this);
 
 
 
