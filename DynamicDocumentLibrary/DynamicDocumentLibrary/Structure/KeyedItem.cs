@@ -49,12 +49,17 @@ namespace DynamicDocumentLibrary
             [JsonInclude]
             public string Key
             {
-                get => _key; 
+                get => this._key; 
                 set 
                 {
-                    if(_key != null)
+                    if(this._key == null)
                     {
-                        _key = value;
+                        this._key = value;
+                        value = null;
+                    }
+                    else
+                    {
+                        
                     }
                 }
             }

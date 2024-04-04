@@ -1,7 +1,8 @@
 using DynamicDocumentLibrary.Structure;
 
-namespace DynamicDocumentLibraryUnitTests
+namespace DynamicDocumentLibraryUnitTests.StructureTests
 {
+
     [TestClass]
     public class DocumentItemTests
     {
@@ -17,7 +18,7 @@ namespace DynamicDocumentLibraryUnitTests
             string expected = "{\"Type\":null,\"Value\":null}";
             Console.WriteLine("Blank test Document Item is {0}", result);
 
-            Assert.AreEqual(expected,result);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -31,7 +32,11 @@ namespace DynamicDocumentLibraryUnitTests
             string result = testItem.ToString();
             Console.WriteLine("Fully initialized test Item is: {0}", result);
 
-            string expected = "{\"Type\":\"TestType\",\"Value\":\"SuccessfulValue\"}";
+            string expected = "{" +
+                "\"Type\":\"TestType\"," +
+                "\"Value\":\"SuccessfulValue\"" +
+            "}";
+
             Console.WriteLine("Expected value is: {0}", expected);
 
             Assert.AreEqual(expected, result);

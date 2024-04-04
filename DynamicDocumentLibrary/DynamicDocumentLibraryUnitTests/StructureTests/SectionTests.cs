@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DynamicDocumentLibrary.Structure;
 
 
-namespace DynamicDocumentLibraryUnitTests
+namespace DynamicDocumentLibraryUnitTests.StructureTests
 {
 
     [TestClass]
@@ -92,7 +92,7 @@ namespace DynamicDocumentLibraryUnitTests
 
             SectionItem sectionItem = new SectionItem();
 
-            if(sectionItem.Deserialize(expected))
+            if (sectionItem.Deserialize(expected))
             {
                 Assert.AreEqual(expected, sectionItem.ToString());
             }
