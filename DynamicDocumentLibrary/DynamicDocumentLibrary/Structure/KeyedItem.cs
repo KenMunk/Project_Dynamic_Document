@@ -43,33 +43,11 @@ namespace DynamicDocumentLibrary
             /// </b>
             /// </br>
             /// 
-            /// References _key for storage and retrieval
+            /// References Key for storage and retrieval
             /// 
             /// </summary>
             [JsonInclude]
-            public string Key
-            {
-                get => this._key; 
-                set 
-                {
-                    if(this._key == null)
-                    {
-                        this._key = value;
-                        value = null;
-                    }
-                    else
-                    {
-                        
-                    }
-                }
-            }
-
-            /// <summary>
-            /// The value container for the Key property only
-            /// accessible from the Key property for modification
-            /// and reading
-            /// </summary>
-            private string _key;
+            protected string Key { get; set; }
 
             public KeyedItem()
             {
@@ -77,6 +55,13 @@ namespace DynamicDocumentLibrary
 
             public KeyedItem(string key){
                 this.Key = key;
+            }
+
+            public KeyedItem(string key, string value, string type)
+            {
+                this.Key = key;
+                this.Value = value;
+                this.Type = type;
             }
 
             /// <summary>
@@ -92,7 +77,12 @@ namespace DynamicDocumentLibrary
             /// <param name="newKey"></param>
             public void OverwriteKeyWith(string newKey)
             {
-                _key = newKey;
+                this.Key = newKey;
+            }
+
+            public string GetKey()
+            {
+                return this.Key;
             }
 
             public override bool Deserialize(string source)
@@ -105,7 +95,7 @@ namespace DynamicDocumentLibrary
 
                     this.Value = temporary.Value;
                     this.Type = temporary.Type;
-                    this.Key = temporary.Key;
+                    this.Key = temporary.GetKey();
                     return true;
                 }
                 catch

@@ -41,6 +41,18 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
             Assert.AreEqual(expected, received.ToString());
         }
 
+        private void CompareExpectedAndReceived(
+            string expected,
+            string received)
+        {
+
+            Console.WriteLine("Expected output is: " + expected);
+
+            Console.WriteLine("Actual output is: " + received);
+
+            Assert.AreEqual(expected, received);
+        }
+
         [TestMethod]
         public void TestDefaultBlank()
         {
@@ -72,24 +84,7 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
         }
 
         [TestMethod]
-        public void TestUnauthorizedKeyModification() {
-
-            string testKey = "First Key";
-
-            KeyedItem keyedItem = new KeyedItem(testKey);
-
-            keyedItem.Key = "Unauthorized";
-
-            string expected = "{" +
-                "\"Key\":\"" + testKey + "\"," +
-                "\"Type\":null," +
-                "\"Value\":null" +
-            "}";
-
-            CompareExpectedAndReceived(expected, keyedItem);
-        }
-        [TestMethod]
-        public void TestAuthorizedKeyModification()
+        public void TestKeyModification()
         {
 
             string oldTestKey = "Old Key";
@@ -109,9 +104,32 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
         }
 
         [TestMethod]
+        public void TestGetKey()
+        {
+
+            string testKey = "First Key";
+
+            KeyedItem keyedItem = new KeyedItem(testKey);
+
+            CompareExpectedAndReceived(testKey, keyedItem.GetKey());
+        }
+
+        [TestMethod]
         public void TestWithFullInit()
         {
-            Assert.Fail();
+            string testKey = "TestKey";
+            string testType = "AType";
+            string testValue = "SomeValue";
+
+            string expected = "{" +
+                "\"Key\":\"" + testKey + "\"," +
+                "\"Type\":\"" + testType + "\"," +
+                "\"Value\":\"" + testValue + "\"" +
+            "}";
+
+            KeyedItem received = new KeyedItem(testKey, testValue, testType);
+
+            CompareExpectedAndReceived(expected, received);
         }
 
     }

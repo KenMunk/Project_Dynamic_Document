@@ -29,7 +29,7 @@ namespace DynamicDocumentLibrary
                     this.Value = temporary.Value;
                     this.Type = temporary.Type;
                     this.Contents = temporary.Contents;
-                    this.Key = temporary.Key;
+                    this.Key = temporary.GetKey();
                     return true;
                 }
                 catch
