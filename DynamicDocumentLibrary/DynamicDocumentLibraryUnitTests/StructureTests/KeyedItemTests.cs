@@ -127,7 +127,7 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
                 "\"Value\":\"" + testValue + "\"" +
             "}";
 
-            KeyedItem received = new KeyedItem(testKey, testValue, testType);
+            KeyedItem received = new KeyedItem(testKey, testType, testValue);
 
             CompareExpectedAndReceived(expected, received);
         }

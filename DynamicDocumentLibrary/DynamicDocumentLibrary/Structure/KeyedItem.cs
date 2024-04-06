@@ -45,6 +45,11 @@ namespace DynamicDocumentLibrary
             /// 
             /// References Key for storage and retrieval
             /// 
+            /// <p>
+            /// A potential issue with this and other string based properties
+            /// is that they can be interchangable which makes enforcing
+            /// implementation safely will be difficult without specific typing
+            /// </p>
             /// </summary>
             [JsonInclude]
             protected string Key { get; set; }
@@ -57,11 +62,35 @@ namespace DynamicDocumentLibrary
                 this.Key = key;
             }
 
-            public KeyedItem(string key, string value, string type)
+            public KeyedItem(string key, string type, string value)
             {
-                this.Key = key;
-                this.Value = value;
-                this.Type = type;
+                this.InitValues(key, type, value);
+            }
+
+            /// <summary>
+            /// Initializes the values within Document item derived
+            /// instances
+            /// </summary>
+            /// <param name="key">The payload of a document item
+            /// this can be any string content within a document.  Default
+            /// utilization will only present the Value within a document
+            /// <seealso cref="Key"/>See Parameter</seealso>
+            /// </param>
+            /// <param name="type">The label describing
+            /// the type that this document item represents in
+            /// a document.  The goal is to enable users to define
+            /// components within a document without needing
+            /// to programatically define the document components</param>
+            /// <br></br>
+            /// <param name="value">The payload of a document item
+            /// this can be any string content within a document.  Default
+            /// utilization will only present the Value within a document
+            /// <seealso cref="Value"/>See Value Parameter</seealso>
+            /// </param>
+            public void InitValues(string key, string type, string value)
+            {
+                this.Key= key;
+                this.InitValues(type, value);
             }
 
             /// <summary>

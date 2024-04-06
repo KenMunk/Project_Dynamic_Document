@@ -7,6 +7,9 @@ namespace DynamicDocumentLibrary
 {
     namespace Structure
     {
+        /// <summary>
+        /// An interface for all document item objects
+        /// </summary>
         public abstract class DocumentItemTemplate
         {
             public abstract bool Deserialize(string source);
