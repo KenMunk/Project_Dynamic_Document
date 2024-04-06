@@ -38,16 +38,44 @@ namespace DynamicDocumentLibrary
                 Contents = new List<DocumentItem>();
             }
 
-            public SectionItem(String Key)
+            public SectionItem(string Key)
             {
                 this.Key = Key;
                 Contents = new List<DocumentItem>();
             }
 
-            public SectionItem(String Key, String Type, String Value)
+            public SectionItem(string Key, string Type, string Value)
             {
-                
+                this.InitValues(Key, Type, Value);
             }
+
+            public void InitValues(
+                string key, 
+                string type, 
+                string value, 
+                List<DocumentItem> Contents
+            )
+            {
+                this.InitValues(key, type, value);
+                this.Contents = Contents;
+            }
+
+            public SectionItem(
+                string key, 
+                string type, 
+                string value, 
+                List<DocumentItem> Contents
+            )
+            {
+                this.InitValues(key, type, value, Contents);
+            }
+
+            public SectionItem(List<DocumentItem> contents)
+            {
+                this.Contents = contents;
+            }
+
+
 
             /// <summary>
             /// Deserializes a string value into a Keyed Item object
