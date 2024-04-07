@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace DynamicDocumentLibrary
 {
@@ -10,6 +11,23 @@ namespace DynamicDocumentLibrary
         /// <summary>
         /// An interface for all document item objects
         /// </summary>
+        /// 
+        [JsonDerivedType(
+            typeof(DocumentItemTemplate), 
+            typeDiscriminator: "template"
+        )]
+        [JsonDerivedType(
+            typeof(DocumentItem), 
+            typeDiscriminator: "item"
+        )]
+        [JsonDerivedType(
+            typeof(KeyedItem), 
+            typeDiscriminator: "keyed"
+        )]
+        [JsonDerivedType(
+            typeof(SectionItem), 
+            typeDiscriminator: "section"
+        )]
         public abstract class DocumentItemTemplate
         {
             /// <summary>

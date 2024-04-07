@@ -8,8 +8,9 @@ namespace DynamicDocumentLibrary
 {
     namespace Structure
     {
-        [JsonDerivedType(typeof(KeyedItem))]
-        [JsonDerivedType(typeof(SectionItem))]
+        [JsonDerivedType(typeof(DocumentItem),typeDiscriminator: "item")]
+        [JsonDerivedType(typeof(KeyedItem), typeDiscriminator: "keyed")]
+        [JsonDerivedType(typeof(SectionItem), typeDiscriminator: "section")]
         public class DocumentItem : DocumentItemTemplate
         {
             /// <summary>
