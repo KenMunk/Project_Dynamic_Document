@@ -76,16 +76,30 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
         {
             SectionItem sectionItem = new SectionItem();
 
+            string[] testTypes = [
+                "Sub1.1",
+                "Sub1.2",
+                "Sub1.3.1",
+                "Sub1.3.2"
+            ];
+
+            string[] testValues = [
+                "See1.1",
+                "See1.2",
+                "See1.3.1",
+                "See1.3.2"
+            ];
+
             sectionItem.Contents.Add(
                 new DocumentItem(
-                    "FirstTest",
-                    "you see"
+                    testTypes[0],
+                    testValues[0]
                 )
             );
             sectionItem.Contents.Add(
                 new DocumentItem(
-                    "SecondTest",
-                    "how about now"
+                    testTypes[1],
+                    testValues[1]
                 )
             );
 
@@ -93,18 +107,17 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
 
             subsection1.Contents.Add(
                 new DocumentItem(
-                    "FirstTest",
-                    "you see"
+                    testTypes[2],
+                    testValues[2]
                 )
             );
             subsection1.Contents.Add(
                 new DocumentItem(
-                    "SecondTest",
-                    "how about now"
+                    testTypes[3],
+                    testValues[3]
                 )
             );
 
-            sectionItem.Contents.Add(subsection1);
             sectionItem.Contents.Add(subsection1);
 
             Console.WriteLine(
@@ -115,37 +128,22 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
             string expected = "{" +
                 "\"Contents\":[" +
                     "{" +
-                        "\"Type\":\"FirstTest\"," +
-                        "\"Value\":\"you see\"" +
+                        "\"Type\":\""+testTypes[0]+"\"," +
+                        "\"Value\":\"" + testValues[0] + "\"" +
                     "}," +
                     "{" +
-                        "\"Type\":\"SecondTest\"," +
-                        "\"Value\":\"how about now\"" +
-                    "}," +
-                    "{" +
-                        "\"Contents\":[" +
-                            "{" +
-                                "\"Type\":\"FirstTest\"," +
-                                "\"Value\":\"you see\"" +
-                            "}," +
-                            "{" +
-                                "\"Type\":\"SecondTest\"," +
-                                "\"Value\":\"how about now\"" +
-                            "}" +
-                        "]," +
-                        "\"Key\":null," +
-                        "\"Type\":null," +
-                        "\"Value\":null" +
+                        "\"Type\":\""+testTypes[1]+"\"," +
+                        "\"Value\":\"" + testValues[1] + "\"" +
                     "}," +
                     "{" +
                         "\"Contents\":[" +
                             "{" +
-                                "\"Type\":\"FirstTest\"," +
-                                "\"Value\":\"you see\"" +
+                                "\"Type\":\""+testTypes[2]+"\"," +
+                                "\"Value\":\"" + testValues[2] + "\"" +
                             "}," +
                             "{" +
-                                "\"Type\":\"SecondTest\"," +
-                                "\"Value\":\"how about now\"" +
+                                "\"Type\":\""+testTypes[3]+"\"," +
+                                "\"Value\":\"" + testValues[3] + "\"" +
                             "}" +
                         "]," +
                         "\"Key\":null," +
@@ -171,7 +169,7 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
             the best solution for now would be to stick with simple typing
             for now, and consider the feature add-on of nested objects later
             */
-            Assert.AreNotEqual(expected, sectionItem.ToString());
+            Assert.AreEqual(expected, sectionItem.ToString());
         }
 
         [TestMethod]

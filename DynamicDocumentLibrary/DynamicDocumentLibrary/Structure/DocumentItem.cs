@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace DynamicDocumentLibrary
 {
     namespace Structure
     {
+        [JsonDerivedType(typeof(KeyedItem))]
+        [JsonDerivedType(typeof(SectionItem))]
         public class DocumentItem : DocumentItemTemplate
         {
             /// <summary>
