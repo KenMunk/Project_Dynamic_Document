@@ -38,17 +38,39 @@ namespace DynamicDocumentLibrary
                 Contents = new List<DocumentItem>();
             }
 
+            /// <summary>
+            /// Initializes a new section item with just the reference key
+            /// and an empty list
+            /// </summary>
+            /// <param name="Key">A reference value used
+            /// to help identify this section item</param>
             public SectionItem(string Key)
             {
                 this.Key = Key;
                 Contents = new List<DocumentItem>();
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="Key"></param>
+            /// <param name="Type"></param>
+            /// <param name="Value"></param>
             public SectionItem(string Key, string Type, string Value)
             {
                 this.InitValues(Key, Type, Value);
             }
 
+            /// <summary>
+            /// Initializes the values of this object with all parameters.
+            /// The primary purpose of this to reduce the overall amount
+            /// of coding needed to initialize a new derivative of any
+            /// document item template derived object
+            /// </summary>
+            /// <param name="key"></param>
+            /// <param name="type"></param>
+            /// <param name="value"></param>
+            /// <param name="Contents"></param>
             public void InitValues(
                 string key, 
                 string type, 

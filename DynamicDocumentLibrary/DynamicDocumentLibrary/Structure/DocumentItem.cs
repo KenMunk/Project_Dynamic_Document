@@ -8,6 +8,19 @@ namespace DynamicDocumentLibrary
 {
     namespace Structure
     {
+        /// <summary>
+        /// <p> 
+        /// A granular component to dynamic documnentation.  This
+        /// element can be a bullet point, a paragraph, or whatever other
+        /// singular component is being used.  
+        /// </p>
+        /// <br><br></br></br>
+        /// <p>
+        /// Example:<br></br>
+        /// Type: bullet<br></br>
+        /// Value: Some point about being flexible.
+        /// </p>
+        /// </summary>
         [JsonDerivedType(typeof(DocumentItem),typeDiscriminator: "item")]
         [JsonDerivedType(typeof(KeyedItem), typeDiscriminator: "keyed")]
         [JsonDerivedType(typeof(SectionItem), typeDiscriminator: "section")]
