@@ -9,7 +9,8 @@ namespace DynamicDocumentLibrary
     namespace Structure
     {
         /// <summary>
-        /// An interface for all document item objects
+        /// An interface for all document item objects that defines the basic
+        /// structure to be expected of all document item related objects
         /// </summary>
         /// 
         [JsonDerivedType(

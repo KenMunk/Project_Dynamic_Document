@@ -29,6 +29,15 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
 
          */
 
+        /// <summary>
+        /// Compares expected and received input values within an 
+        /// assertion and outputs the current outputs into console for
+        /// ease of troubleshooting
+        /// </summary>
+        /// <param name="expected">The expected string output value
+        /// </param>
+        /// <param name="received">An object to be converted to string
+        /// to verify that matches the expected output</param>
         private void CompareExpectedAndReceived(
             string expected,
             KeyedItem received)
@@ -41,6 +50,15 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
             Assert.AreEqual(expected, received.ToString());
         }
 
+        /// <summary>
+        /// Compares expected and received input values within an 
+        /// assertion and outputs the current outputs into console for
+        /// ease of troubleshooting
+        /// </summary>
+        /// <param name="expected">The expected string output value
+        /// </param>
+        /// <param name="received">An object to be converted to string
+        /// to verify that matches the expected output</param>
         private void CompareExpectedAndReceived(
             string expected,
             string received)
@@ -53,6 +71,10 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
             Assert.AreEqual(expected, received);
         }
 
+        /// <summary>
+        /// Tests a blank Keyed item to verify the structure, and validate that
+        /// all values are null
+        /// </summary>
         [TestMethod]
         public void TestDefaultBlank()
         {

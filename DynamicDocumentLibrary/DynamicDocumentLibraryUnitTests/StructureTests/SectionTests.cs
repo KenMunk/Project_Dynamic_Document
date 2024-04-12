@@ -10,6 +10,10 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
     public class SectionTests
     {
 
+        /// <summary>
+        /// Creates and compares a blank section item against its expected
+        /// output value when converted to a JSON string value.
+        /// </summary>
         [TestMethod]
         public void TestBlankSection()
         {
@@ -28,6 +32,12 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
             Assert.AreEqual(expected, result);
         }
 
+        /// <summary>
+        /// Creates a section item object with two document items with
+        /// known value outputs and inserts them into a section item class
+        /// then compares the expected value against the actual value when
+        /// the section item object is converted to a JSON string value
+        /// </summary>
         [TestMethod]
         public void AddTwoDocumentItems()
         {
@@ -51,6 +61,7 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
                 sectionItem
             );
 
+            
             string expected = "{" +
                 "\"Contents\":[" +
                     "{" +
@@ -71,6 +82,16 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
 
         }
 
+        /// <summary>
+        /// Creates a section item with two additional section iten items
+        /// nested within the parent section item and compares it against
+        /// its expected value
+        /// <br><br></br></br>
+        /// The intent of this is to test whether or not a nested structure of
+        /// section items can be used to build more complex documents
+        /// without the use of additional structure classes  in complex nesting
+        /// nesting scenarios
+        /// </summary>
         [TestMethod]
         public void AddSubsectionsWithItems()
         {
@@ -156,24 +177,17 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
                 "\"Value\":null" +
             "}";
 
-            /*
-            Realization, System.Text.JSON.Serialize will not
-            recognize that there are potentially objects that are
-            derived from a stated class but not the declared class
-            of an item.  This will result in the resultant JSON not
-            reflecting the correct data.  Unfortunately, there isn't a
-            good solution to this that will be easy to implement unless
-            I have objects added as pre-serialized json objects which
-            adds so many more chances for errors
-
-            the best solution for now would be to stick with simple typing
-            for now, and consider the feature add-on of nested objects later
-            */
             Assert.AreEqual(expected, sectionItem.ToString());
         }
 
+        /// <summary>
+        /// Attempt to deserialize a JSON string representation of a
+        /// section item with two document items nested inside of it and
+        /// confirm that serializing the result will result in a matching string
+        /// output as the string input.
+        /// </summary>
         [TestMethod]
-        public void RecoverDataWithTwoObjects()
+        public void RecoverDataWithTwoSimpleObjects()
         {
             string expected = "{" +
                 "\"Contents\":[" +
