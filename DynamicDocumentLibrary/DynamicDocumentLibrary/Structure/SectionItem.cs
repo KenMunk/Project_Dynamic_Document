@@ -51,14 +51,19 @@ namespace DynamicDocumentLibrary
             }
 
             /// <summary>
-            /// 
+            /// Initializes a new section item object with the descriptor and 
+            /// reference values identified but not the content structure
             /// </summary>
-            /// <param name="Key"></param>
-            /// <param name="Type"></param>
-            /// <param name="Value"></param>
+            /// <param name="key">A reference identifier for this object
+            /// to be used to find this object for later use</param>
+            /// <param name="type">A type identifier for filtering purposes
+            /// </param>
+            /// <param name="value">A description value used to help
+            /// explain the contents to the reader of this document</param>
             public SectionItem(string Key, string Type, string Value)
             {
                 this.InitValues(Key, Type, Value);
+                Contents = new List<DocumentItem>();
             }
 
             /// <summary>
@@ -67,10 +72,15 @@ namespace DynamicDocumentLibrary
             /// of coding needed to initialize a new derivative of any
             /// document item template derived object
             /// </summary>
-            /// <param name="key"></param>
-            /// <param name="type"></param>
-            /// <param name="value"></param>
-            /// <param name="Contents"></param>
+            /// <param name="key">A reference identifier for this object
+            /// to be used to find this object for later use</param>
+            /// <param name="type">A type identifier for filtering purposes
+            /// </param>
+            /// <param name="value">A description value used to help
+            /// explain the contents to the reader of this document</param>
+            /// <param name="Contents">The contents to be put into a
+            /// section item to describe the internal structure of the 
+            /// section item</param>
             public void InitValues(
                 string key, 
                 string type, 
@@ -82,6 +92,18 @@ namespace DynamicDocumentLibrary
                 this.Contents = Contents;
             }
 
+            /// <summary>
+            /// Fully initializes a new section item with all fields populated
+            /// </summary>
+            /// <param name="key">A reference identifier for this object
+            /// to be used to find this object for later use</param>
+            /// <param name="type">A type identifier for filtering purposes
+            /// </param>
+            /// <param name="value">A description value used to help
+            /// explain the contents to the reader of this document</param>
+            /// <param name="Contents">The contents to be put into a
+            /// section item to describe the internal structure of the 
+            /// section item</param>
             public SectionItem(
                 string key, 
                 string type, 
@@ -92,6 +114,12 @@ namespace DynamicDocumentLibrary
                 this.InitValues(key, type, value, Contents);
             }
 
+            /// <summary>
+            /// Initializes just the contents of a new section item
+            /// </summary>
+            /// <param name="contents">The contents to be put into a
+            /// section item to describe the internal structure of the 
+            /// section item</param>
             public SectionItem(List<DocumentItem> contents)
             {
                 this.Contents = contents;

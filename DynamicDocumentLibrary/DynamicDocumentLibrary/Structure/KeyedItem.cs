@@ -57,14 +57,32 @@ namespace DynamicDocumentLibrary
             [JsonInclude]
             protected string Key { get; set; }
 
+            /// <summary>
+            /// Initializes and empty KeyedItem Object
+            /// </summary>
             public KeyedItem()
             {
             }
 
+            /// <summary>
+            /// Initializes this object with just the Key value initialized
+            /// </summary>
+            /// <param name="key">A reference identifier for this object
+            /// to be used to find this object for later use</param>
             public KeyedItem(string key){
                 this.Key = key;
             }
 
+            /// <summary>
+            /// A full initialization of a keyed item object with a reference
+            /// identifier, type identifier, and value payload
+            /// </summary>
+            /// <param name="key">A reference identifier for this object
+            /// to be used to find this object for later use</param>
+            /// <param name="type">A type identifier for filtering purposes
+            /// </param>
+            /// <param name="value">A description value used to help
+            /// explain the contents to the reader of this document</param>
             public KeyedItem(string key, string type, string value)
             {
                 this.InitValues(key, type, value);
@@ -112,9 +130,15 @@ namespace DynamicDocumentLibrary
                 this.Key = newKey;
             }
 
+            /// <summary>
+            /// In order to protect the real value of the key the key value of
+            /// objects derived from this class can only be accessed via this
+            /// method to promote better protections of the reference data.
+            /// </summary>
+            /// <returns>The Key value of this object</returns>
             public string GetKey()
             {
-                return this.Key;
+                return this.Key+"";
             }
 
             /// <summary>
