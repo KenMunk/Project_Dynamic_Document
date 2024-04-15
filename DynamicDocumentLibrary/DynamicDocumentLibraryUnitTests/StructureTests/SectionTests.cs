@@ -22,12 +22,14 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
             string result = testSection.ToString();
             Console.WriteLine("Blank Test Section is {0}", result);
 
-            string expected = "{" +
-                "\"Contents\":[]," +
-                "\"Key\":null," +
-                "\"Type\":null," +
-                "\"Value\":null" +
-            "}";
+            List<string> emptyContent = new List<string>();
+
+            string expected = ExpectedOutputs.SectionItemOutput(
+                emptyContent,
+                null,
+                null,
+                null
+            );
 
             Assert.AreEqual(expected, result);
         }
@@ -61,22 +63,23 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
                 sectionItem
             );
 
-            
-            string expected = "{" +
-                "\"Contents\":[" +
-                    "{" +
-                        "\"Type\":\"FirstTest\"," +
-                        "\"Value\":\"you see\"" +
-                    "}," +
-                    "{" +
-                        "\"Type\":\"SecondTest\"," +
-                        "\"Value\":\"how about now\"" +
-                    "}" +
-                "]," +
-                "\"Key\":null," +
-                "\"Type\":null," +
-                "\"Value\":null" +
-            "}";
+            List<string> testContents = new List<string>();
+            testContents.Add(ExpectedOutputs.DocumentItemOutput(
+                "FirstTest",
+                "you see"
+            ));
+
+            testContents.Add(ExpectedOutputs.DocumentItemOutput(
+                "SecondTest",
+                "how about now"
+            ));
+
+            string expected = ExpectedOutputs.SectionItemOutput(
+                testContents,
+                null,
+                null,
+                null
+            );
 
             Assert.AreEqual(expected, sectionItem.ToString());
 
@@ -146,6 +149,38 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
                 sectionItem
             );
 
+            List<string> testPayload = new List<string>();
+            List<string> testSection2Payload = new List<string>();
+
+            testSection1Payload.Add(ExpectedOutputs.DocumentItemOutput(
+                testTypes[0],
+                testValues[0]
+            ));
+
+            testSection1Payload.Add(ExpectedOutputs.DocumentItemOutput(
+                testTypes[1],
+                testValues[1]
+            ));
+
+            testSection2Payload.Add(ExpectedOutputs.DocumentItemOutput(
+                testTypes[2],
+                testValues[2]
+            ));
+
+            testSection2Payload.Add(ExpectedOutputs.DocumentItemOutput(
+                testTypes[3],
+                testValues[3]
+            ));
+
+
+            testPayload.Add(ExpectedOutputs.SectionItemOutput(
+                testSection2Payload,
+                null,
+                null,
+                null
+            ));
+
+            /*
             string expected = "{" +
                 "\"Contents\":[" +
                     "{" +
@@ -176,6 +211,13 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
                 "\"Type\":null," +
                 "\"Value\":null" +
             "}";
+            //*//*
+                 * If the above content is no longer commented out
+                 * then we are going to have issues with comparing the
+                 * expected and received outputs of the document components
+                 * due to the inclusion of typeDescriptors to promote
+                 * polymorphism
+            //*///
 
             Assert.AreEqual(expected, sectionItem.ToString());
         }

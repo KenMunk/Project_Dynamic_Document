@@ -21,9 +21,12 @@ namespace DynamicDocumentLibrary
         /// Value: Some point about being flexible.
         /// </p>
         /// </summary>
-        [JsonDerivedType(typeof(DocumentItem),typeDiscriminator: "item")]
-        [JsonDerivedType(typeof(KeyedItem), typeDiscriminator: "keyed")]
-        [JsonDerivedType(typeof(SectionItem), typeDiscriminator: "section")]
+        [JsonDerivedType(typeof(DocumentItem),
+            typeDiscriminator: "documentitem")]
+        [JsonDerivedType(typeof(KeyedItem), 
+            typeDiscriminator: "keyeditem")]
+        [JsonDerivedType(typeof(SectionItem), 
+            typeDiscriminator: "sectionitem")]
         public class DocumentItem : DocumentItemTemplate
         {
             /// <summary>
@@ -151,7 +154,8 @@ namespace DynamicDocumentLibrary
             /// </summary>
             /// <returns>Returns a JSON representation of this object
             /// </returns>
-            public override string ToString() => JsonSerializer.Serialize(this);
+            public override string ToString() =>
+                JsonSerializer.Serialize<DocumentItem>(this);
 
 
 

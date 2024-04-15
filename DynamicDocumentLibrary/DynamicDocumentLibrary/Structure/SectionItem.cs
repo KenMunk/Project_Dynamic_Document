@@ -19,6 +19,9 @@ namespace DynamicDocumentLibrary
         /// a section item<br></br>
         /// Value - A label used to preface the contents of a section item
         /// </summary>
+        /// 
+        [JsonDerivedType(typeof(SectionItem),
+            typeDiscriminator: "sectionitem")]
         public class SectionItem : KeyedItem
         {
             /// <summary>
@@ -164,7 +167,7 @@ namespace DynamicDocumentLibrary
             /// </returns>
             public override string ToString()
             {
-                return JsonSerializer.Serialize(this);
+                return JsonSerializer.Serialize<SectionItem>(this);
             }
         }
     }

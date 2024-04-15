@@ -8,8 +8,8 @@ namespace DynamicDocumentLibrary
     namespace Structure
     {
 
-        [JsonDerivedType(typeof(KeyedItem), typeDiscriminator: "keyed")]
-        [JsonDerivedType(typeof(SectionItem), typeDiscriminator: "section")]
+        [JsonDerivedType(typeof(KeyedItem), typeDiscriminator: "keyeditem")]
+        [JsonDerivedType(typeof(SectionItem), typeDiscriminator: "sectionitem")]
         public class KeyedItem : DocumentItem
         {
             /// <summary>
@@ -177,7 +177,7 @@ namespace DynamicDocumentLibrary
             /// </returns>
             public override string ToString()
             {
-                return JsonSerializer.Serialize(this);
+                return JsonSerializer.Serialize<KeyedItem>(this);
             }
         }
     }

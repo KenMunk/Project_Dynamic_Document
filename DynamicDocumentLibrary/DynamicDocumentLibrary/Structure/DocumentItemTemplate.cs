@@ -15,19 +15,19 @@ namespace DynamicDocumentLibrary
         /// 
         [JsonDerivedType(
             typeof(DocumentItemTemplate), 
-            typeDiscriminator: "template"
+            typeDiscriminator: "itemtemplate"
         )]
         [JsonDerivedType(
             typeof(DocumentItem), 
-            typeDiscriminator: "item"
+            typeDiscriminator: "documentitem"
         )]
         [JsonDerivedType(
             typeof(KeyedItem), 
-            typeDiscriminator: "keyed"
+            typeDiscriminator: "keyeditem"
         )]
         [JsonDerivedType(
             typeof(SectionItem), 
-            typeDiscriminator: "section"
+            typeDiscriminator: "sectionitem"
         )]
         public abstract class DocumentItemTemplate
         {
