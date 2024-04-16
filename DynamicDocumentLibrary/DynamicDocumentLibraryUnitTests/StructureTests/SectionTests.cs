@@ -152,12 +152,12 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
             List<string> testPayload = new List<string>();
             List<string> testSection2Payload = new List<string>();
 
-            testSection1Payload.Add(ExpectedOutputs.DocumentItemOutput(
+            testPayload.Add(ExpectedOutputs.DocumentItemOutput(
                 testTypes[0],
                 testValues[0]
             ));
 
-            testSection1Payload.Add(ExpectedOutputs.DocumentItemOutput(
+            testPayload.Add(ExpectedOutputs.DocumentItemOutput(
                 testTypes[1],
                 testValues[1]
             ));
@@ -179,6 +179,13 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
                 null,
                 null
             ));
+
+            string expected = ExpectedOutputs.SectionItemOutput(
+                testPayload,
+                null,
+                null,
+                null
+            );
 
             /*
             string expected = "{" +
@@ -231,6 +238,25 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
         [TestMethod]
         public void RecoverDataWithTwoSimpleObjects()
         {
+
+            List<string> testContents = new List<string>();
+            testContents.Add(ExpectedOutputs.DocumentItemOutput(
+                "FirstTest",
+                "you see"
+            ));
+
+            testContents.Add(ExpectedOutputs.DocumentItemOutput(
+                "SecondTest",
+                "how about now"
+            ));
+
+            string expected = ExpectedOutputs.SectionItemOutput(
+                testContents,
+                null,
+                null,
+                null
+            );
+            /*
             string expected = "{" +
                 "\"Contents\":[" +
                     "{" +
@@ -245,7 +271,7 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
                 "\"Key\":null," +
                 "\"Type\":null," +
                 "\"Value\":null" +
-            "}";
+            "}";//*///
 
             SectionItem sectionItem = new SectionItem();
 

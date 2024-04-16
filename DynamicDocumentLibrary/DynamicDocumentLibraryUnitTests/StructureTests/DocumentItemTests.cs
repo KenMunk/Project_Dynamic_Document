@@ -15,7 +15,10 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
             DocumentItem testDocumentItem = new DocumentItem();
 
             string result = testDocumentItem.ToString();
-            string expected = "{\"Type\":null,\"Value\":null}";
+            string expected = ExpectedOutputs.DocumentItemOutput(
+                null,
+                null
+            );
             Console.WriteLine("Blank test Document Item is {0}", result);
 
             Assert.AreEqual(expected, result);
@@ -24,18 +27,21 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
         [TestMethod]
         public void CanInitWithTypeAndValue()
         {
+            string testType = "TestType";
+            string testValue = "SuccessfulValue";
+
             DocumentItem testItem = new DocumentItem(
-                "TestType",
-                "SuccessfulValue"
+                testType,
+                testValue
             );
 
             string result = testItem.ToString();
             Console.WriteLine("Fully initialized test Item is: {0}", result);
 
-            string expected = "{" +
-                "\"Type\":\"TestType\"," +
-                "\"Value\":\"SuccessfulValue\"" +
-            "}";
+            string expected = ExpectedOutputs.DocumentItemOutput(
+                testType,
+                testValue
+            );
 
             Console.WriteLine("Expected value is: {0}", expected);
 

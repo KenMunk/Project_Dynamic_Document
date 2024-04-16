@@ -161,7 +161,10 @@ namespace DynamicDocumentLibrary
 
                     this.Value = temporary.Value;
                     this.Type = temporary.Type;
-                    this.Key = temporary.GetKey();
+                    if(temporary.GetKey() != "")
+                    {
+                        this.Key = temporary.GetKey();
+                    }
                     return true;
                 }
                 catch

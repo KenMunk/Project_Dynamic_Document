@@ -88,6 +88,7 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
         {
             return ("{" +
                 PropertyEntry("$type", "keyeditem") + "," +
+                PropertyEntry("Key", key)+","+
                 PropertyEntry("Type", type) + "," +
                 PropertyEntry("Value", value) +
             "}");

@@ -80,11 +80,11 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
         {
             KeyedItem testItem = new KeyedItem();
 
-            string expected = "{" +
-                "\"Key\":null," +
-                "\"Type\":null," +
-                "\"Value\":null" +
-            "}";
+            string expected = ExpectedOutputs.KeyedItemOutput(
+                null,
+                null,
+                null
+            );
 
             CompareExpectedAndReceived(expected, testItem);
         }
@@ -96,11 +96,11 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
 
             KeyedItem keyedItem = new KeyedItem(testKey);
 
-            string expected = "{" +
-                "\"Key\":\""+testKey+"\"," +
-                "\"Type\":null," +
-                "\"Value\":null" +
-            "}";
+            string expected = ExpectedOutputs.KeyedItemOutput(
+                testKey,
+                null,
+                null
+            );
 
             CompareExpectedAndReceived(expected, keyedItem);
         }
@@ -114,13 +114,13 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
 
             KeyedItem keyedItem = new KeyedItem(oldTestKey);
 
-            keyedItem.OverwriteKeyWith("First Key");
+            keyedItem.OverwriteKeyWith(testKey);
 
-            string expected = "{" +
-                "\"Key\":\"" + testKey + "\"," +
-                "\"Type\":null," +
-                "\"Value\":null" +
-            "}";
+            string expected = ExpectedOutputs.KeyedItemOutput(
+                testKey,
+                null,
+                null
+            );
 
             CompareExpectedAndReceived(expected, keyedItem);
         }
@@ -143,11 +143,11 @@ namespace DynamicDocumentLibraryUnitTests.StructureTests
             string testType = "AType";
             string testValue = "SomeValue";
 
-            string expected = "{" +
-                "\"Key\":\"" + testKey + "\"," +
-                "\"Type\":\"" + testType + "\"," +
-                "\"Value\":\"" + testValue + "\"" +
-            "}";
+            string expected = ExpectedOutputs.KeyedItemOutput(
+                testKey,
+                testType,
+                testValue
+            );
 
             KeyedItem received = new KeyedItem(testKey, testType, testValue);
 
