@@ -1,3 +1,4 @@
+#pragma warning disable CS8625
 using DynamicDocumentLibrary.Structure;
 
 namespace DynamicDocumentLibraryUnitTests.StructureTests

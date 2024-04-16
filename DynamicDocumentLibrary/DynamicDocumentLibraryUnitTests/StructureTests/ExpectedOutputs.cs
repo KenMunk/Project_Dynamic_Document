@@ -1,4 +1,6 @@
-﻿using DynamicDocumentLibrary.Structure;
+﻿#pragma warning disable CS8625
+
+using DynamicDocumentLibrary.Structure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
