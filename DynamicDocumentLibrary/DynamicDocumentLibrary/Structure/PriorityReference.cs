@@ -2,6 +2,9 @@
 
 namespace DynamicDocumentLibrary.Structure
 {
+    /// <summary>
+    /// A container class for keyed document item references 
+    /// </summary>
     public class PriorityReference
     {
         [JsonInclude]
